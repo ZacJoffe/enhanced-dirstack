@@ -3,5 +3,7 @@
 if [[ ! -e /tmp/dirstack ]]; then
 	echo -e "$PWD\n" > /tmp/dirstack	
 else
-	echo -e "$PWD\n$(cat /tmp/dirstack)" > /tmp/dirstack
+	if ! grep -Fxq "$PWD" /tmp/dirstack; then
+		echo -e "$PWD\n$(cat /tmp/dirstack)" > /tmp/dirstack
+	fi
 fi
